@@ -10,8 +10,14 @@
         var store = this;
         store.products = [];
 
-        $http.get('/products.json').success(function(data) {
-            store.products = data;
+        $http({
+            method: 'GET',
+            url: '/products.json'
+        }).then(function successCallback(response) {
+            store.products = response.data;
+        }, function errorCallback(response) {
+            // called asynchronously if an error occurs
+            // or server returns response with an error status.
         });
     }]);
 
